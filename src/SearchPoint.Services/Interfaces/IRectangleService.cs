@@ -4,6 +4,6 @@ namespace SearchPoint.Services.Interfaces
 {
     public interface IRectangleService
     {
-        Task<List<RectangleDto>> FindAsync(PointDto point);
+        Task<List<RectangleDto>> FindAsync(RequestDto request);
     }
 }

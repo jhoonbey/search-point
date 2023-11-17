@@ -18,13 +18,13 @@ namespace SearchPoint.Web.Controllers
         }
 
         /// <summary>
-        ///  Find rectangles that given point lies inside in
+        ///  Find rectangles that given point list lies inside in
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] PointDto point)
+        public async Task<IActionResult> Get([FromBody] RequestDto request)
         {
-            var response = await _rectangleService.FindAsync(point);
+            var response = await _rectangleService.FindAsync(request);
 
             _logger.LogInfo($"Returned {response.Count} rectangles.");
 

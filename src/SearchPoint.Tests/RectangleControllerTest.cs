@@ -24,14 +24,18 @@ public class RectangleControllerTest
             X = 8,
             Y = 9
         };
+        var request = new RequestDto
+        {
+            Points = new List<PointDto> { point }
+        };
         var response = TestDataHelper.GetFakeRectangleList();
 
         var loggerMock = new Mock<ILoggerManager>();
-        rectangleService.Setup(x => x.FindAsync(point)).ReturnsAsync(() => response);
+        rectangleService.Setup(x => x.FindAsync(request)).ReturnsAsync(() => response);
         var controller = new RectangleController(loggerMock.Object, rectangleService.Object);
 
         // act
-        var actionResult = await controller.Get(point);
+        var actionResult = await controller.Get(request);
 
         var okObjectResult = actionResult as OkObjectResult;
         Assert.NotNull(okObjectResult);
